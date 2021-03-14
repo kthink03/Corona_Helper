@@ -186,17 +186,13 @@ public class MyPathActivity extends AppCompatActivity implements OnMapReadyCallb
                 String markerTitle = "**Current Location**";
                 String markerSnippet = "위도:" + String.valueOf(location.getLatitude()) + " 경도:" + String.valueOf(location.getLongitude());
 
-                String[] lat = new String[5];
-                String[] lng = new String[5];
+                String[] lat = new String[3];
+                String[] lng = new String[3];
 
                 lat[0]="35.839368";
                 lng[0]="128.750969";
-                lat[1]="35.839763";
-                lng[1]="128.751585";
-                lat[2]="35.839683";
-                lng[2]="128.750290";
-                lat[3]="35.839449";
-                lng[3]="128.750525";
+                lat[1]="35.839660";
+                lng[1]="128.751442";
 
                 setCurrentLocation(lat, lng);
 

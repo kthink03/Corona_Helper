@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -56,10 +57,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<PieEntry> yValues = new ArrayList<PieEntry>();
     private static final String TAG = "corona_helper";
 
+
+
+    private Button btn_start, btn_end;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        btn_start = findViewById(R.id.btn_start);
+        btn_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyService.class);
+                intent.setAction("startForeground");
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
+                    startForegroundService(intent);
+                } else {
+                    startService(intent);
+                }
+            }
+        });
+
+        btn_end = findViewById(R.id.btn_end);
+        btn_end.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MyService.class);
+                stopService(intent);
+            }
+        });
+
 
         pieChart =(PieChart)findViewById(R.id.piechart);
 
@@ -182,7 +211,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     private void Receive(){
         Log.d(TAG,"RECEIVE");
-        //차트
+        text1 = findViewById(R.id.text1);
+        text1.setText("확률은 70% 입니다.");
+
+        yValues.remove(0);
+        yValues.add(new PieEntry(30f,"SAFE"));
+        yValues.add(new PieEntry(70f,"WARNING"));
+
+        PieDataSet dataSet = new PieDataSet(yValues,"/ COVID-19");
+        dataSet.setSliceSpace(3f);
+        dataSet.setSelectionShift(5f);
+        dataSet.setColors(colorArray);
+
+        PieData data = new PieData((dataSet));
+        data.setValueTextSize(10f);
+        data.setValueTextColor(Color.WHITE);
+
+        pieChart.setData(data);
+        pieChart.invalidate();
     }
 
     private void Send(){

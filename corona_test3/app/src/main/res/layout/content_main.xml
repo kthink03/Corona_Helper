@@ -27,6 +27,35 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"/>
 
+
+            <Button
+                android:id="@+id/btn_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="41dp"
+                android:layout_marginLeft="41dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="42dp"
+                android:layout_marginRight="42dp"
+                android:layout_toStartOf="@+id/btn_end"
+                android:layout_toLeftOf="@+id/btn_end"
+                android:layout_toEndOf="@+id/menu"
+                android:layout_toRightOf="@+id/menu"
+                android:text="서비스시작"/>
+
+            <Button
+                android:id="@+id/btn_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="51dp"
+                android:layout_marginRight="51dp"
+                android:layout_toStartOf="@+id/alarm"
+                android:layout_toLeftOf="@+id/alarm"
+                android:text="서비스종료"/>
+
             <ImageButton
                 android:id="@+id/alarm"
                 android:layout_width="50dp"
